@@ -1,0 +1,129 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Creator = loadstring(
+    game:HttpGet("https://pastebin.com/raw/0fSnvfGt")
+)()
+
+local Player = Players.LocalPlayer
+
+--------------------------------------------------
+-- AR0XMBUSH
+--------------------------------------------------
+
+local AR0XMBUSH = Creator.createEntity({
+
+    CustomName = "AR0XMBUSH",
+
+    Model = "https://raw.githubusercontent.com/Ilikerobloxdoors/Ar0XM_Bush-Hotel--/main/Ar0X%3DMbUsh.rbxm",
+
+    Speed = 220,
+    DelayTime = 3.5,
+    HeightOffset = 0,
+
+    CanKill = true,
+    KillRange = 40,
+
+    BreakLights = false,
+    BackwardsMovement = false,
+
+    FlickerLights = {
+        false,
+        1
+    },
+
+    Cycles = {
+        Min = 4,
+        Max = 6,
+        WaitTime = 0.5
+    },
+
+    CamShake = {
+        false,
+        {3.5, 20, 0.1, 1},
+        100
+    },
+
+    Jumpscare = {
+        true,
+
+        {
+            Image1 = "rbxassetid://86279356500246",
+            Image2 = "rbxassetid://86279356500246",
+
+            Shake = false,
+
+            Sound1 = {
+                85349172482807,
+                {
+                    Volume = 2.5
+                }
+            },
+
+            Sound2 = {
+                85349172482807,
+                {
+                    Volume = 2.5
+                }
+            },
+
+            Flashing = {
+                true,
+                Color3.fromRGB(212, 0, 0)
+            },
+
+            Tease = {
+                false,
+                Min = 4,
+                Max = 4
+            }
+        }
+    },
+
+    CustomDialog = {
+        "You died to AR0XMBUSH..."
+    }
+})
+
+
+--------------------------------------------------
+-- REAL GLITCH
+--------------------------------------------------
+
+local function SpawnRealGlitch()
+
+    local Data = require(
+        Player.PlayerGui.MainUI.Initiator.Main_Game
+    )
+
+    local CurrentRoom = workspace.CurrentRooms[
+        tostring(ReplicatedStorage.GameData.LatestRoom.Value)
+    ]
+
+    print("REAL GLITCH SPAWNING")
+
+    require(
+        ReplicatedStorage.ClientModules.EntityModules.Glitch
+    ).stuff(Data, CurrentRoom)
+
+end
+
+
+--------------------------------------------------
+-- SEQUENCE
+--------------------------------------------------
+
+task.spawn(function()
+
+    -- REAL DOORS GLITCH
+    SpawnRealGlitch()
+
+    -- Give Glitch time to perform its effect
+    task.wait(3.5)
+
+    -- THEN AR0XMBUSH
+    print("AR0XMBUSH SPAWNING")
+
+    Creator.runEntity(AR0XMBUSH)
+
+end)
